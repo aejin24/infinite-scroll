@@ -12,6 +12,7 @@ function App() {
   const onClickHandler = (id) => {
     sessionStorage.setItem("pages", page.current - 1);
     sessionStorage.setItem("posts", JSON.stringify(posts));
+    sessionStorage.setItem("pos", window.screenY);
     navigate(`/${id}`);
   }
 
@@ -23,9 +24,10 @@ function App() {
 
       if (data.length) {
         page.current = Number(sessionStorage.getItem("pages")) + 1;
+        window.scrollTo(0, Number(sessionStorage.getItem("pos")));
       }
 
-      sessionStorage.removeItem("position")
+      sessionStorage.removeItem("pos");
       sessionStorage.removeItem("posts");
       sessionStorage.removeItem("pages");
 
